@@ -3,10 +3,10 @@ import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import './PortfolioSection.css';
 
 const PORTFOLIO_ITEMS = [
-  { id: 1, title: '3D Models', thumbnail: '/images/work-1.jpg' },
-  { id: 2, title: 'VFX', thumbnail: '/images/work-2.jpg' },
-  { id: 3, title: 'Animation', thumbnail: '/images/work-3.jpg' },
-  { id: 4, title: 'Design', thumbnail: '/images/work-4.jpg' },
+  { id: 1, title: '3D Models', thumbnail: '/images/work-1.svg' },
+  { id: 2, title: 'VFX', thumbnail: '/images/work-2.svg' },
+  { id: 3, title: 'Animation', thumbnail: '/images/work-3.svg' },
+  { id: 4, title: 'Design', thumbnail: '/images/work-4.svg' },
 ];
 
 function PortfolioSection() {

@@ -1,0 +1,16 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E2A38"/>
+      <stop offset="1" stop-color="#0E141B"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="28" fill="url(#bg2)"/>
+  <g opacity="0.9">
+    <path d="M180 520C260 420 325 370 420 330C482 302 540 296 602 340C676 390 715 500 820 540C905 570 1010 560 1100 500V800H180V520Z" fill="#4A738D"/>
+    <path d="M190 560C250 470 330 410 420 380C498 354 566 358 632 406C698 452 744 518 832 544C914 568 1008 560 1098 528V800H190V560Z" fill="#7BA9C6" fill-opacity="0.5"/>
+  </g>
+  <rect x="390" y="220" width="420" height="300" rx="18" fill="#EAF2F6" fill-opacity="0.08" stroke="#D8E4EC" stroke-opacity="0.4"/>
+  <text x="600" y="360" text-anchor="middle" fill="#F5FAFF" font-family="Arial, Helvetica, sans-serif" font-size="74" font-weight="700" letter-spacing="6">WORK 02</text>
+  <text x="600" y="430" text-anchor="middle" fill="#C7D4DF" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="7">VFX PLACEHOLDER</text>
+</svg>
