@@ -1,5 +1,5 @@
 .about-section {
-  padding: 80px 20px;
+  padding: 100px 40px;
   background-color: #0a0a0a;
   min-height: 100vh;
   display: flex;
@@ -13,27 +13,77 @@ body.light-mode .about-section {
 
 .about-container {
   display: flex;
-  gap: 60px;
+  gap: 80px;
   align-items: flex-start;
-  max-width: 1200px;
+  max-width: 1400px;
   width: 100%;
 }
 
-.about-film-strip {
-  flex: 1;
-  min-width: 300px;
+.about-film-strip-wrapper {
+  flex: 0 0 380px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.film-strip-frame {
+  position: relative;
+  z-index: 2;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  border: 3px solid rgba(255, 255, 255, 0.05);
+}
+
+body.light-mode .film-strip-frame {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 0, 0, 0.08);
 }
 
 .film-strip-image {
   width: 100%;
   height: auto;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  display: block;
+  aspect-ratio: 9 / 16;
   object-fit: cover;
 }
 
-body.light-mode .film-strip-image {
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+/* Film strip reels (sprocket holes) */
+.film-strip-reel {
+  position: absolute;
+  z-index: 1;
+  background: linear-gradient(90deg, 
+    #1a1a1a 0%, #1a1a1a 4px, 
+    transparent 4px, transparent 20px,
+    #1a1a1a 20px, #1a1a1a 24px
+  );
+  background-size: 24px 28px;
+  background-position: 0 center;
+  background-repeat: repeat-y;
+  width: 48px;
+  height: 500px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 4px;
+}
+
+body.light-mode .film-strip-reel {
+  background: linear-gradient(90deg, 
+    #e0e0e0 0%, #e0e0e0 4px, 
+    transparent 4px, transparent 20px,
+    #e0e0e0 20px, #e0e0e0 24px
+  );
+  background-size: 24px 28px;
+}
+
+.film-strip-reel-left {
+  left: -70px;
+}
+
+.film-strip-reel-right {
+  right: -70px;
+  transform: translateY(-50%) scaleX(-1);
 }
 
 .about-content {
@@ -41,49 +91,64 @@ body.light-mode .film-strip-image {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  padding-top: 20px;
 }
 
 .about-content h2 {
-  font-size: 48px;
+  font-size: 56px;
   font-weight: 700;
-  letter-spacing: -1px;
-  line-height: 1.2;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
 }
 
 .about-content p {
   font-size: 16px;
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.8);
-  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.78);
+  letter-spacing: 0.3px;
 }
 
 body.light-mode .about-content p {
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.72);
 }
 
-/* Film strip decoration */
-.about-film-strip::after {
-  content: '';
-  position: absolute;
-  right: -30px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 200px;
-  background: repeating-linear-gradient(
-    90deg,
-    #2a2a2a 0px,
-    #2a2a2a 8px,
-    transparent 8px,
-    transparent 16px
-  );
-  border-radius: 20px;
-  opacity: 0.5;
+@media (max-width: 1200px) {
+  .about-container {
+    gap: 60px;
+  }
+
+  .about-film-strip-wrapper {
+    flex: 0 0 300px;
+  }
+
+  .film-strip-reel {
+    height: 400px;
+  }
+
+  .about-content h2 {
+    font-size: 42px;
+  }
 }
 
 @media (max-width: 1024px) {
+  .about-section {
+    padding: 80px 30px;
+  }
+
   .about-container {
     gap: 40px;
+  }
+
+  .about-film-strip-wrapper {
+    flex: 0 0 280px;
+  }
+
+  .film-strip-reel-left {
+    left: -60px;
+  }
+
+  .film-strip-reel-right {
+    right: -60px;
   }
 
   .about-content h2 {
@@ -105,12 +170,18 @@ body.light-mode .about-content p {
     gap: 40px;
   }
 
-  .about-film-strip {
+  .about-film-strip-wrapper {
+    flex: 0 0 auto;
     width: 100%;
   }
 
-  .about-film-strip::after {
+  .film-strip-reel {
     display: none;
+  }
+
+  .film-strip-frame {
+    max-width: 300px;
+    margin: 0 auto;
   }
 
   .about-content h2 {
@@ -134,5 +205,9 @@ body.light-mode .about-content p {
   .about-content p {
     font-size: 13px;
     line-height: 1.6;
+  }
+
+  .film-strip-frame {
+    max-width: 100%;
   }
 }

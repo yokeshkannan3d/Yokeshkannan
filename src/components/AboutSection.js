@@ -5,8 +5,12 @@ function AboutSection() {
   return (
     <section className="about-section">
       <div className="about-container">
-        <div className="about-film-strip">
-          <img src="/images/about-film.jpg" alt="Film strip" className="film-strip-image" />
+        <div className="about-film-strip-wrapper">
+          <div className="film-strip-frame">
+            <img src="/images/about-film.jpg" alt="Film strip" className="film-strip-image" />
+          </div>
+          <div className="film-strip-reel film-strip-reel-left"></div>
+          <div className="film-strip-reel film-strip-reel-right"></div>
         </div>
         <div className="about-content">
           <h2>About me</h2>

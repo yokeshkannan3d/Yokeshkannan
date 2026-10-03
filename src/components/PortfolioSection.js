@@ -14,9 +14,17 @@ function PortfolioSection() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const autoScrollIntervalRef = useRef(null);
 
   useEffect(() => {
     checkScrollPosition();
+    startAutoScroll();
+
+    return () => {
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+      }
+    };
   }, []);
 
   const checkScrollPosition = () => {
@@ -27,15 +35,60 @@ function PortfolioSection() {
     }
   };
 
+  const startAutoScroll = () => {
+    autoScrollIntervalRef.current = setInterval(() => {
+      if (scrollContainerRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+        const scrollAmount = 350;
+        
+        if (scrollLeft + clientWidth >= scrollWidth - 20) {
+          // Reset to beginning with smooth scroll
+          scrollContainerRef.current.scrollTo({
+            left: 0,
+            behavior: 'smooth',
+          });
+        } else {
+          scrollContainerRef.current.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth',
+          });
+        }
+      }
+    }, 4000);
+  };
+
+  const stopAutoScroll = () => {
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+    }
+  };
+
+  const resumeAutoScroll = () => {
+    stopAutoScroll();
+    setTimeout(() => {
+      startAutoScroll();
+    }, 5000);
+  };
+
   const scroll = (direction) => {
+    stopAutoScroll();
     if (scrollContainerRef.current) {
-      const scrollAmount = 300;
+      const scrollAmount = 350;
       scrollContainerRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
       });
-      setTimeout(checkScrollPosition, 300);
+      setTimeout(() => {
+        checkScrollPosition();
+        resumeAutoScroll();
+      }, 300);
     }
+  };
+
+  const handleScroll = () => {
+    checkScrollPosition();
+    stopAutoScroll();
+    resumeAutoScroll();
   };
 
   return (
@@ -57,7 +110,7 @@ function PortfolioSection() {
           <div
             className="portfolio-carousel"
             ref={scrollContainerRef}
-            onScroll={checkScrollPosition}
+            onScroll={handleScroll}
           >
             {PORTFOLIO_ITEMS.concat(PORTFOLIO_ITEMS).map((item, index) => (
               <div

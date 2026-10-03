@@ -38,15 +38,21 @@ function HeroSection() {
           Your browser does not support the video tag.
         </video>
         <div className="hero-overlay"></div>
-        {!isPlaying && (
-          <button className="hero-play-button" onClick={handlePlayClick} aria-label="Play reel">
-            <Play size={32} fill="currentColor" />
-          </button>
-        )}
-        <div className="hero-text">
-          <h1>JUMP INTO MY</h1>
-          <h1 className="hero-highlight">WORLD</h1>
-          <p>PLAY SHOW REEL</p>
+        
+        <div className="hero-content">
+          <div className="hero-text">
+            <div className="hero-title">
+              <span className="hero-line">JUMP INTO MY</span>
+              <span className="hero-line hero-highlight">WORLD</span>
+            </div>
+            <p className="hero-subtitle">PLAY SHOW REEL</p>
+          </div>
+
+          {!isPlaying && (
+            <button className="hero-play-button" onClick={handlePlayClick} aria-label="Play reel">
+              <Play size={36} fill="currentColor" />
+            </button>
+          )}
         </div>
       </div>
     </section>
