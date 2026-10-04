@@ -1,6 +1,6 @@
 .about-section {
   background: #0b0c0d;
-  padding: 54px 28px 72px;
+  padding: 42px 24px 70px;
 }
 
 body.light-mode .about-section {
@@ -8,24 +8,23 @@ body.light-mode .about-section {
 }
 
 .about-container {
-  max-width: 1300px;
+  max-width: 1360px;
   margin: 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
-  gap: 54px;
+  gap: 44px;
 }
 
 .about-copy {
-  flex: 1.1;
   min-width: 0;
 }
 
 .about-copy h2 {
-  margin: 0 0 22px;
-  font-size: clamp(3rem, 3vw, 5rem);
-  line-height: 0.95;
-  letter-spacing: -0.065em;
+  margin: 0 0 26px;
+  font-size: clamp(2.8rem, 3vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: -0.06em;
   font-weight: 800;
   color: #f5f5f5;
 }
@@ -37,78 +36,41 @@ body.light-mode .about-copy h2 {
 .about-copy p {
   margin: 0;
   max-width: 660px;
-  font-size: clamp(1.05rem, 1vw, 1.3rem);
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.79);
+  font-size: clamp(1.02rem, 1.2vw, 1.22rem);
+  line-height: 1.72;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 body.light-mode .about-copy p {
-  color: rgba(14, 14, 14, 0.75);
+  color: rgba(15, 15, 15, 0.74);
 }
 
 .about-film-strip-wrapper {
-  flex: 1;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  min-width: 0;
 }
 
-.film-strip-track {
+.film-strip-stage {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: min(100%, 710px);
-  min-height: 430px;
-  padding: 0 32px;
-}
-
-.film-strip-track::before,
-.film-strip-track::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 28px;
-  background: repeating-linear-gradient(
-    to bottom,
-    #1f1f1f 0,
-    #1f1f1f 7px,
-    transparent 7px,
-    transparent 16px
-  );
-  z-index: 1;
-}
-
-body.light-mode .film-strip-track::before,
-body.light-mode .film-strip-track::after {
-  background: repeating-linear-gradient(
-    to bottom,
-    #d7d7d7 0,
-    #d7d7d7 7px,
-    transparent 7px,
-    transparent 16px
-  );
-}
-
-.film-strip-track::before {
-  left: 0;
-}
-
-.film-strip-track::after {
-  right: 0;
+  width: min(100%, 760px);
+  padding: 0 30px;
 }
 
 .film-strip-frame {
   position: relative;
   z-index: 2;
-  width: 100%;
-  max-width: 620px;
+  width: min(100%, 760px);
   height: 420px;
   overflow: hidden;
   border-radius: 10px;
-  background: #1d1d1d;
-  box-shadow: 0 15px 36px rgba(0, 0, 0, 0.42);
+  background: #111;
+  border: 2px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
 .film-strip-image {
@@ -118,51 +80,80 @@ body.light-mode .film-strip-track::after {
   object-fit: cover;
 }
 
+.film-strip-edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 32px;
+  background:
+    radial-gradient(circle at 50% 9px, rgba(255,255,255,0.18) 0 3px, transparent 3.5px) 0 0 / 22px 22px,
+    repeating-linear-gradient(
+      to bottom,
+      rgba(19, 19, 19, 0.96) 0 6px,
+      rgba(255, 255, 255, 0.06) 6px 16px,
+      transparent 16px 20px
+    );
+  border-radius: 5px;
+}
+
+body.light-mode .film-strip-edge {
+  background:
+    radial-gradient(circle at 50% 9px, rgba(0,0,0,0.1) 0 3px, transparent 3.5px) 0 0 / 22px 22px,
+    repeating-linear-gradient(
+      to bottom,
+      rgba(215, 215, 215, 0.9) 0 6px,
+      rgba(0, 0, 0, 0.06) 6px 16px,
+      transparent 16px 20px
+    );
+}
+
+.film-strip-edge-left {
+  left: 0;
+}
+
+.film-strip-edge-right {
+  right: 0;
+}
+
 @media (max-width: 1024px) {
   .about-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 36px;
-  }
-
-  .about-copy {
-    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
 
   .about-copy p {
     max-width: 100%;
   }
 
-  .about-film-strip-wrapper {
+  .film-strip-stage {
     width: 100%;
+    max-width: 760px;
   }
 
-  .film-strip-track {
-    width: 100%;
-    max-width: 700px;
+  .film-strip-frame {
+    height: 330px;
   }
 }
 
 @media (max-width: 640px) {
   .about-section {
-    padding: 32px 16px 54px;
+    padding: 24px 16px 48px;
   }
 
   .about-copy h2 {
     margin-bottom: 16px;
   }
 
-  .film-strip-track {
-    min-height: 260px;
-    padding: 0 20px;
+  .film-strip-stage {
+    padding: 0 18px;
   }
 
   .film-strip-frame {
-    height: 260px;
+    height: 240px;
   }
 
-  .film-strip-track::before,
-  .film-strip-track::after {
+  .film-strip-edge {
     width: 18px;
   }
 }

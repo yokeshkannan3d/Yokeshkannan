@@ -20,12 +20,12 @@ function AboutSection() {
         </div>
 
         <div className="about-film-strip-wrapper">
-          <div className="film-strip-track">
-            <div className="film-strip-holes film-strip-holes-left"></div>
+          <div className="film-strip-stage">
+            <span className="film-strip-edge film-strip-edge-left" aria-hidden="true" />
             <div className="film-strip-frame">
               <img src="/images/about-film.jpg" alt="Film strip" className="film-strip-image" />
             </div>
-            <div className="film-strip-holes film-strip-holes-right"></div>
+            <span className="film-strip-edge film-strip-edge-right" aria-hidden="true" />
           </div>
         </div>
       </div>
