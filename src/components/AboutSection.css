@@ -1,159 +1,260 @@
 .about-section {
-  background: #0b0c0d;
-  padding: 42px 24px 70px;
+  position: relative;
+  background: #000000;
+  min-height: 520px;
+  padding: 48px 40px;
+  overflow: hidden;
 }
 
 body.light-mode .about-section {
-  background: #efefef;
+  background: #f0f0f0;
 }
 
-.about-container {
+/* Diagonal background film strip */
+.film-strip-diagonal {
+  position: absolute;
+  top: -120px;
+  right: -200px;
+  width: 800px;
+  height: 800px;
+  z-index: 0;
+  transform: rotate(-38deg);
+  pointer-events: none;
+}
+
+.film-strip-diagonal-top,
+.film-strip-diagonal-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: repeating-linear-gradient(
+    to right,
+    rgba(60, 60, 60, 0.35) 0px,
+    rgba(60, 60, 60, 0.35) 36px,
+    transparent 36px,
+    transparent 42px
+  );
+  opacity: 0.32;
+}
+
+body.light-mode .film-strip-diagonal-top,
+body.light-mode .film-strip-diagonal-bottom {
+  background: repeating-linear-gradient(
+    to right,
+    rgba(180, 180, 180, 0.2) 0px,
+    rgba(180, 180, 180, 0.2) 36px,
+    transparent 36px,
+    transparent 42px
+  );
+}
+
+.film-strip-diagonal-top {
+  top: 140px;
+}
+
+.film-strip-diagonal-bottom {
+  top: 280px;
+}
+
+/* Main content wrapper */
+.about-content-wrapper {
+  position: relative;
+  z-index: 2;
   max-width: 1360px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 44px;
+  gap: 64px;
 }
 
-.about-copy {
-  min-width: 0;
+/* Text block */
+.about-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-.about-copy h2 {
-  margin: 0 0 26px;
-  font-size: clamp(2.8rem, 3vw, 5rem);
-  line-height: 0.96;
-  letter-spacing: -0.06em;
-  font-weight: 800;
-  color: #f5f5f5;
+.about-title {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #ffffff;
 }
 
-body.light-mode .about-copy h2 {
+body.light-mode .about-title {
   color: #121212;
 }
 
-.about-copy p {
+.about-description {
   margin: 0;
-  max-width: 660px;
-  font-size: clamp(1.02rem, 1.2vw, 1.22rem);
-  line-height: 1.72;
-  color: rgba(255, 255, 255, 0.8);
+  max-width: 520px;
+  font-size: 13px;
+  line-height: 1.55;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.82);
 }
 
-body.light-mode .about-copy p {
-  color: rgba(15, 15, 15, 0.74);
+body.light-mode .about-description {
+  color: rgba(18, 18, 18, 0.78);
 }
 
-.about-film-strip-wrapper {
+/* Primary film strip wrapper */
+.film-strip-primary-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 0;
 }
 
-.film-strip-stage {
+.film-strip-container {
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: min(100%, 760px);
-  padding: 0 30px;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 480px;
+  background: #1a1a1a;
+  padding: 18px 22px;
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
-.film-strip-frame {
+body.light-mode .film-strip-container {
+  background: #e8e8e8;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+/* Perforation track */
+.film-perforation-track {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.film-sprocket {
+  display: inline-block;
+  width: 14px;
+  height: 12px;
+  border-radius: 2px;
+  background: rgba(200, 200, 200, 0.9);
+}
+
+body.light-mode .film-sprocket {
+  background: rgba(100, 100, 100, 0.7);
+}
+
+/* Image wrapper */
+.film-image-wrapper {
   position: relative;
-  z-index: 2;
-  width: min(100%, 760px);
-  height: 420px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-radius: 10px;
-  background: #111;
-  border: 2px solid rgba(255, 255, 255, 0.04);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  border-radius: 6px;
+  background: #000;
+  margin: 6px 0;
 }
 
-.film-strip-image {
+.film-image {
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
+  display: block;
 }
 
-.film-strip-edge {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  width: 32px;
-  background:
-    radial-gradient(circle at 50% 9px, rgba(255,255,255,0.18) 0 3px, transparent 3.5px) 0 0 / 22px 22px,
-    repeating-linear-gradient(
-      to bottom,
-      rgba(19, 19, 19, 0.96) 0 6px,
-      rgba(255, 255, 255, 0.06) 6px 16px,
-      transparent 16px 20px
-    );
-  border-radius: 5px;
-}
+/* Responsive */
+@media (max-width: 1200px) {
+  .about-content-wrapper {
+    gap: 48px;
+  }
 
-body.light-mode .film-strip-edge {
-  background:
-    radial-gradient(circle at 50% 9px, rgba(0,0,0,0.1) 0 3px, transparent 3.5px) 0 0 / 22px 22px,
-    repeating-linear-gradient(
-      to bottom,
-      rgba(215, 215, 215, 0.9) 0 6px,
-      rgba(0, 0, 0, 0.06) 6px 16px,
-      transparent 16px 20px
-    );
-}
+  .about-title {
+    font-size: 36px;
+  }
 
-.film-strip-edge-left {
-  left: 0;
-}
-
-.film-strip-edge-right {
-  right: 0;
+  .film-strip-container {
+    max-width: 420px;
+  }
 }
 
 @media (max-width: 1024px) {
-  .about-container {
-    grid-template-columns: 1fr;
-    gap: 28px;
+  .about-section {
+    min-height: auto;
+    padding: 48px 32px;
   }
 
-  .about-copy p {
+  .about-content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-title {
+    font-size: 32px;
+  }
+
+  .film-strip-container {
     max-width: 100%;
   }
 
-  .film-strip-stage {
-    width: 100%;
-    max-width: 760px;
-  }
-
-  .film-strip-frame {
-    height: 330px;
+  .film-strip-diagonal {
+    top: 50%;
+    right: -300px;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .about-section {
-    padding: 24px 16px 48px;
+    padding: 40px 24px;
   }
 
-  .about-copy h2 {
-    margin-bottom: 16px;
+  .about-content-wrapper {
+    gap: 32px;
   }
 
-  .film-strip-stage {
-    padding: 0 18px;
+  .about-title {
+    font-size: 28px;
   }
 
-  .film-strip-frame {
-    height: 240px;
+  .about-description {
+    font-size: 12px;
+    line-height: 1.5;
   }
 
-  .film-strip-edge {
-    width: 18px;
+  .film-sprocket {
+    width: 12px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section {
+    min-height: auto;
+    padding: 32px 16px;
+  }
+
+  .about-title {
+    font-size: 24px;
+  }
+
+  .about-description {
+    font-size: 11px;
+    max-width: 100%;
+  }
+
+  .film-strip-container {
+    padding: 14px 16px;
+  }
+
+  .film-sprocket {
+    width: 11px;
+    height: 9px;
+  }
+
+  .film-perforation-track {
+    gap: 6px;
   }
 }

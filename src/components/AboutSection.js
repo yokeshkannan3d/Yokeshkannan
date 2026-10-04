@@ -4,10 +4,18 @@ import './AboutSection.css';
 function AboutSection() {
   return (
     <section className="about-section">
-      <div className="about-container">
-        <div className="about-copy">
-          <h2>About me</h2>
-          <p>
+      {/* Diagonal background film strip */}
+      <div className="film-strip-diagonal">
+        <div className="film-strip-diagonal-top"></div>
+        <div className="film-strip-diagonal-bottom"></div>
+      </div>
+
+      {/* Main content container */}
+      <div className="about-content-wrapper">
+        {/* Left: Text content */}
+        <div className="about-text-block">
+          <h2 className="about-title">About me</h2>
+          <p className="about-description">
             Lorem ipsum is simply dummy text of the printing and typesetting industry.
             Lorem Ipsum has been the industry's standard dummy text ever since 1966,
             when designers at Letraset and James Mosley, the librarian at St Bride Printing
@@ -19,13 +27,27 @@ function AboutSection() {
           </p>
         </div>
 
-        <div className="about-film-strip-wrapper">
-          <div className="film-strip-stage">
-            <span className="film-strip-edge film-strip-edge-left" aria-hidden="true" />
-            <div className="film-strip-frame">
-              <img src="/images/about-film.jpg" alt="Film strip" className="film-strip-image" />
+        {/* Right: Main horizontal film strip */}
+        <div className="film-strip-primary-wrapper">
+          <div className="film-strip-container">
+            {/* Top perforations */}
+            <div className="film-perforation-track film-perforation-top">
+              {[...Array(14)].map((_, i) => (
+                <span key={`top-${i}`} className="film-sprocket"></span>
+              ))}
             </div>
-            <span className="film-strip-edge film-strip-edge-right" aria-hidden="true" />
+
+            {/* Image frame */}
+            <div className="film-image-wrapper">
+              <img src="/images/about-film.jpg" alt="About Me" className="film-image" />
+            </div>
+
+            {/* Bottom perforations */}
+            <div className="film-perforation-track film-perforation-bottom">
+              {[...Array(14)].map((_, i) => (
+                <span key={`bottom-${i}`} className="film-sprocket"></span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
